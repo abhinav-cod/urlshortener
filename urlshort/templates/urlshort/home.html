@@ -1,0 +1,41 @@
+{% extends 'urlshort/index.html' %}
+
+{% block body %}
+<div class="bg-dark">
+<div class="container text-danger ">
+  <div class="card mt-5 padding:16px">
+    <div class="card-header text-center py-3 bg-red">
+      <h1 class='text-success'>Shorten Your URL <i class="fas fa-link px-4"></i></h1>
+    </div>
+    <div class="px-3 py-4">
+      <form action="" method="POST">
+        {% csrf_token %}
+        <div class="row g-2">
+          <div class="col-8 text-center ">{{form.original_url}}</div>
+          <div class="col-4">
+            <button class="btn btn-primary btn-lg w-100" type="submit">
+              bite it
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  {% if errors %}
+  <div class="alert alert-danger mt-4" role="alert">
+    <p>{{errors}}</p>
+  </div>
+  {% endif %}
+
+  {% if new_url %}
+
+  <div class="mx-auto text-center mt-5">
+    <h2 class="text-danger">Your shortened Url</h2>
+    <p class='text-danger'>You can copy the Link below and share it with your friends</p>
+    <p class="text-warning">{{new_url}}</p>
+    <p class='text-warning'><span class="text-danger">Previous URL:</span> {{original_url}}</p>
+  </div>
+  {% endif %}
+</div>
+</div>
+{% endblock body %}
